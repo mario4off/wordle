@@ -10,7 +10,7 @@ export default function Board() {
   );
 
   return (
-    <section className="px-12 flex flex-col items-center">
+    <section className="px-12 flex flex-col items-center min-h-3/4 gap-18">
       <WordsGrid words={randomWords} />
 
       <RandomGameButton onClick={() => setRandomWords(getRandomWords(words))} />
