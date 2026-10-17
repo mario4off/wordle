@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { normalizeString } from "../utils";
 
 export default function GuessInput({
