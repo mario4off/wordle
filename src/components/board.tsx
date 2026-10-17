@@ -9,12 +9,13 @@ export default function Board() {
   const [randomWords, setRandomWords] = useState<string[]>(
     getRandomWords(words),
   );
-
+  const [tries, setTries] = useState(1);
+  const [currentWord, setCurrentWord] = useState(words[0]);
   const [guess, setGuess] = useState("");
 
   return (
     <section className="px-12 flex flex-col items-center  gap-18">
-      <WordsGrid words={randomWords} guess={guess} />
+      <WordsGrid words={randomWords} guess={guess} tries={tries} />
 
       <GuessForm setGuess={setGuess} />
 

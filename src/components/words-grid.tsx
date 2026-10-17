@@ -3,13 +3,12 @@ import { useState } from "react";
 export default function WordsGrid({
   words,
   guess,
+  tries,
 }: {
   words: string[];
   guess: string;
+  tries: number;
 }) {
-  const [row, setRow] = useState(1);
-  const [currentWord, setCurrentWord] = useState(words[row - 1]);
-
   const isCorrectStyle = "border-green-300";
   const isIncorrectStyle = "border-red-300";
   const defaultStyle = "border-slate-300";
@@ -17,7 +16,7 @@ export default function WordsGrid({
   return (
     <div className="mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
       {words.map((word, rowIndex) => {
-        if (row <= rowIndex) {
+        if (tries <= rowIndex) {
           return;
         }
 
