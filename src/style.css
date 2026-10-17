@@ -2,6 +2,12 @@
 
 @layer base {
   h1 {
-    @apply text-red-300;
+    @apply text-white text-7xl font-medium;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  p {
+    @apply text-slate-400;
+    font-family: "Montserrat", sans-serif;
   }
 }
