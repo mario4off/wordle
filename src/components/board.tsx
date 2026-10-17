@@ -10,12 +10,16 @@ export default function Board() {
     getRandomWords(words),
   );
   const [tries, setTries] = useState(1);
-  const [currentWord, setCurrentWord] = useState(words[0]);
-  const [guess, setGuess] = useState("");
+  const [currentWord, setCurrentWord] = useState(randomWords[0]);
+  const [guess, setGuess] = useState<string>("");
+
+  const winner = guess === currentWord;
 
   return (
     <section className="px-12 flex flex-col items-center  gap-18">
       <WordsGrid words={randomWords} guess={guess} tries={tries} />
+
+      {winner && <h1>GANASTE!!!</h1>}
 
       <GuessForm setGuess={setGuess} />
 
