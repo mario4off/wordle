@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import words from "../config/words-list.json";
 import RandomGameButton from "./random-game-button";
-import { getRandomWords } from "../services/wordsService";
+import { getRandomWord } from "../services/wordsService";
 import WordsGrid from "./words-grid";
 import GuessForm from "./guess-form";
 
 export default function Board() {
-  const [randomWord, setRandomWords] = useState<string[]>(
-    getRandomWords(words),
-  );
+  const [randomWord] = useState<string[]>(getRandomWord(words));
 
   const [tries, setTries] = useState(0);
-  const [currentWord, setCurrentWord] = useState(randomWords[0]);
+  const [currentWord, setCurrentWord] = useState(randomWord[0]);
   const [guess, setGuess] = useState<string>("");
 
   const winner = guess === currentWord;
@@ -25,7 +23,7 @@ export default function Board() {
 
   return (
     <section className="px-12 flex flex-col items-center  gap-18">
-      <WordsGrid words={wordsInUse} guess={guess} tries={tries} />
+      <WordsGrid word={randomWord} guess={guess} tries={tries} />
 
       {winner && <h1>GANASTE!!!</h1>}
 
