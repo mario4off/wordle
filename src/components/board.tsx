@@ -23,7 +23,7 @@ export default function Board() {
 
   return (
     <section className="px-12 flex flex-col items-center  gap-18">
-      <WordsGrid word={randomWord} guess={guess} />
+      <WordsGrid currentWord={randomWord} guess={guess} />
 
       {winner && <h1>GANASTE!!!</h1>}
 
