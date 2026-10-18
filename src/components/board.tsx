@@ -6,11 +6,10 @@ import WordsGrid from "./words-grid";
 import GuessForm from "./guess-form";
 
 export default function Board() {
-  const [randomWords, setRandomWords] = useState<string[]>(
+  const [randomWord, setRandomWords] = useState<string[]>(
     getRandomWords(words),
   );
 
-  const [wordsInUse, setWordsInUse] = useState([randomWords[0]]);
   const [tries, setTries] = useState(0);
   const [currentWord, setCurrentWord] = useState(randomWords[0]);
   const [guess, setGuess] = useState<string>("");
