@@ -19,9 +19,9 @@ export default function WordsGrid({
 
   useEffect(() => {
     if (guessRecord?.length == 0) {
-      setGuessRecord(() => [currentWord]);
+      setGuessRecord(() => [guess]);
     } else {
-      setGuessRecord((prev) => [...prev, currentWord]);
+      setGuessRecord((prev) => [...prev, guess]);
     }
   }, [guess]);
 
@@ -46,17 +46,6 @@ export default function WordsGrid({
             );
           });
         }
-
-        // return currentWord.split("").map((char, index) => (
-        //   <div
-        //     className={`${!guess ? defaultStyle : char == guess.split("")[index] ? isCorrectStyle : isIncorrectStyle} bg-black text-center border rounded-3xl  p-3 px-16 `}
-        //     key={index}
-        //   >
-        //     <p className="text-base md:text-2xl text-white text-extrabold">
-        //       {char}
-        //     </p>
-        //   </div>
-        // ));
       })}
     </div>
   );
