@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import words from "../config/words-list.json";
 import RestartGameButton from "./restart-game-button";
 import { getRandomWord } from "../services/wordsService";
@@ -34,30 +34,37 @@ const GAME_RESULT = {
 >;
 
 export default function Board() {
-  const [randomWord, setRandomWord] = useState(getRandomWord(words));
-
   const [tries, setTries] = useState(0);
-  const [currentWord] = useState(randomWord);
+  const [currentWord, setCurrentWord] = useState(getRandomWord(words));
   const [guess, setGuess] = useState("");
   const [gameStatus, setGameStatus] = useState<GameStatus>("playing");
   const gameResult = GAME_RESULT[gameStatus];
 
   const handleGuess = (newGuess: string) => {
-    if (currentWord == newGuess) {
+    setGuess(newGuess);
+    if (currentWord.toUpperCase() == newGuess) {
       setGameStatus("won");
       return;
     }
-    setGuess(newGuess);
-    setTries(tries + 1);
 
+    setTries(tries + 1);
+  };
+
+  useEffect(() => {
     if (tries == 6) {
       setGameStatus("lost");
     }
+  }, [tries]);
+
+  const handleRestart = () => {
+    setCurrentWord(getRandomWord(words));
+    setTries(0);
+    console.log("Reinicio");
   };
 
   return (
     <section className="px-12 flex flex-col items-center  gap-18">
-      <WordsGrid currentWord={randomWord} guess={guess} />
+      <WordsGrid currentWord={currentWord} guess={guess} tries={tries} />
 
       {gameStatus == "playing" ? (
         <GuessForm setGuess={handleGuess} />
@@ -69,7 +76,7 @@ export default function Board() {
         </div>
       )}
 
-      <RestartGameButton onClick={() => setRandomWord(getRandomWord(words))} />
+      <RestartGameButton restart={handleRestart} />
     </section>
   );
 }

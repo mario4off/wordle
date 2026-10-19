@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 export default function WordsGrid({
   currentWord,
   guess,
+  tries,
 }: {
   currentWord: string;
   guess: string;
+  tries: number;
 }) {
   const isCorrectStyle = "border-green-300";
   const isIncorrectStyle = "border-red-300";
@@ -14,16 +16,21 @@ export default function WordsGrid({
 
   const MAX_ROWS = 6;
   const WORD_LENGTH = 5;
-  console.log(currentWord);
 
   const [guessRecord, setGuessRecord] = useState<string[]>([]);
 
   useEffect(() => {
-    if (!guess) {
+    console.log(guessRecord);
+    if (tries == 0) {
       return;
     }
+
     setGuessRecord((prev) => [...prev, guess]);
-  }, [guess]);
+  }, [tries, guess]);
+
+  useEffect(() => {
+    setGuessRecord([]);
+  }, [currentWord]);
 
   return (
     <div className="mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
