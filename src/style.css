@@ -6,6 +6,11 @@
     font-family: "Montserrat", sans-serif;
   }
 
+  h2 {
+    @apply text-white text-4xl font-medium;
+    font-family: "Montserrat", sans-serif;
+  }
+
   p {
     @apply text-slate-400;
     font-family: "Montserrat", sans-serif;
