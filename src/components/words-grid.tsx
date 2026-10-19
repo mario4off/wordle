@@ -18,18 +18,17 @@ export default function WordsGrid({
   const [guessRecord, setGuessRecord] = useState<string[]>([]);
 
   useEffect(() => {
-    if (guessRecord?.length == 0) {
-      setGuessRecord(() => [guess]);
-    } else {
-      setGuessRecord((prev) => [...prev, guess]);
+    if (!guess) {
+      return;
     }
+    setGuessRecord((prev) => [...prev, guess]);
   }, [guess]);
 
   return (
     <div className="mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
       {Array.from({ length: MAX_ROWS }, (_, rowIndex) => {
         const guessedWord = guessRecord[rowIndex] ?? "";
-
+        console.log(`${guessedWord} - index${rowIndex}`);
         {
           return Array.from({ length: WORD_LENGTH }, (_, index) => {
             const char = guessedWord[index] ?? "";

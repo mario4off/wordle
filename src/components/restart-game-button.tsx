@@ -1,4 +1,8 @@
-export default function RandomGameButton({ onClick }: { onClick: () => void }) {
+export default function RestartGameButton({
+  onClick,
+}: {
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={() => onClick()}

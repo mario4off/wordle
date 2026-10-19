@@ -1,6 +1,6 @@
 import { useState } from "react";
 import words from "../config/words-list.json";
-import RandomGameButton from "./random-game-button";
+import RestartGameButton from "./restart-game-button";
 import { getRandomWord } from "../services/wordsService";
 import WordsGrid from "./words-grid";
 import GuessForm from "./guess-form";
@@ -13,10 +13,14 @@ export default function Board() {
   const [guess, setGuess] = useState<string>("");
 
   const winner = guess === currentWord;
+  const [loser, setLoser] = useState(false);
 
   const handleGuess = (newGuess: string) => {
     setGuess(newGuess);
     setTries(tries + 1);
+    if (tries == 6 && !winner) {
+      setLoser(true);
+    }
   };
 
   console.log(tries);
@@ -26,10 +30,11 @@ export default function Board() {
       <WordsGrid currentWord={randomWord} guess={guess} />
 
       {winner && <h1>GANASTE!!!</h1>}
+      {loser && <h1>PERDISTE...😭!!!</h1>}
 
-      <GuessForm setGuess={handleGuess} />
+      {!loser && <GuessForm setGuess={handleGuess} />}
 
-      <RandomGameButton onClick={() => setRandomWord(getRandomWord(words))} />
+      <RestartGameButton onClick={() => setRandomWord(getRandomWord(words))} />
     </section>
   );
 }
