@@ -20,7 +20,6 @@ export default function WordsGrid({
   const [guessRecord, setGuessRecord] = useState<string[]>([]);
 
   useEffect(() => {
-    console.log(guessRecord);
     if (tries == 0) {
       return;
     }
@@ -43,7 +42,7 @@ export default function WordsGrid({
 
             return (
               <div
-                className={`${char != "" ? activeStyle : defaultStyle} bg-black text-center border rounded-3xl  p-3 px-16 `}
+                className={`${char != "" ? activeStyle : defaultStyle} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
                 key={`${rowIndex}-${index}`}
               >
                 <p className="text-base md:text-2xl min-h-10 text-white text-extrabold">

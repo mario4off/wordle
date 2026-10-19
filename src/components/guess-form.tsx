@@ -7,8 +7,12 @@ export default function GuessForm({
   setGuess: (e: string) => void;
 }) {
   const handleSubmit = (formData: FormData) => {
-    setGuess(formData.get("guess") as string);
-    setValue("");
+    const guess = formData.get("guess") as string;
+
+    if (guess.length == 5) {
+      setGuess(formData.get("guess") as string);
+      setValue("");
+    }
   };
 
   const [value, setValue] = useState("");
@@ -19,7 +23,6 @@ export default function GuessForm({
         name="guess"
         maxLength={5}
         onChange={(e) => setValue(normalizeString(e.target.value))}
-        minLength={5}
         value={value}
         className="border border-amber-300 text-amber-300 text-center text-xl tracking-widest min-h-12 rounded-md w-52"
       />

@@ -59,22 +59,24 @@ export default function Board() {
   const handleRestart = () => {
     setCurrentWord(getRandomWord(words));
     setTries(0);
-    console.log("Reinicio");
+    setGameStatus("playing");
   };
 
   return (
-    <section className="px-12 flex flex-col items-center  gap-18">
+    <section className="px-12 flex flex-col items-center  gap-18 ">
       <WordsGrid currentWord={currentWord} guess={guess} tries={tries} />
 
-      {gameStatus == "playing" ? (
-        <GuessForm setGuess={handleGuess} />
-      ) : (
-        <div
-          className={`border px-3 p-2 rounded-md ${gameResult.style.container}`}
-        >
-          <h2 className={`${gameResult.style.text}`}>{gameResult.message}</h2>
-        </div>
-      )}
+      <div className="min-h-34 flex items-center">
+        {gameStatus == "playing" ? (
+          <GuessForm setGuess={handleGuess} />
+        ) : (
+          <div
+            className={`border px-3 p-2 rounded-md ${gameResult.style.container}`}
+          >
+            <h2 className={`${gameResult.style.text}`}>{gameResult.message}</h2>
+          </div>
+        )}
+      </div>
 
       <RestartGameButton restart={handleRestart} />
     </section>
