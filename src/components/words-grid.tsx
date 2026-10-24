@@ -9,7 +9,7 @@ export default function WordsGrid({
   guess: string;
   tries: number;
 }) {
-  const isCorrectStyle = "border-green-300";
+  const isCorrectStyle = "border-green-400";
   const isIncorrectStyle = "border-red-300";
   const defaultStyle = "border-slate-700";
   const activeStyle = "border-slate-300";
@@ -33,6 +33,17 @@ export default function WordsGrid({
 
   console.log(currentWord);
 
+  const defineCellStyle = (guessChar: string, referenceChar: string) => {
+    if (guessChar != "") {
+      if (guessChar == referenceChar) {
+        return isCorrectStyle;
+      } else {
+        return activeStyle;
+      }
+    }
+    return defaultStyle;
+  };
+
   return (
     <div className="mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
       {Array.from({ length: MAX_ROWS }, (_, rowIndex) => {
@@ -51,21 +62,9 @@ export default function WordsGrid({
           return Array.from({ length: WORD_LENGTH }, (_, index) => {
             const char = guessedWord[index] ?? "";
 
-            let cellStyle: string;
-
-            if (char != "") {
-              if (char == currentWord.split("")[index]) {
-                cellStyle = isCorrectStyle;
-              } else {
-                cellStyle = activeStyle;
-              }
-            } else {
-              cellStyle = defaultStyle;
-            }
-
             return (
               <div
-                className={`${cellStyle} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
+                className={`${defineCellStyle(char, currentWord.split("")[index])} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
                 key={`${rowIndex}-${index}`}
               >
                 <p className="text-base md:text-2xl min-h-10 text-white text-extrabold">
