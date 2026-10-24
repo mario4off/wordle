@@ -54,7 +54,7 @@ export default function WordsGrid({
             let cellStyle: string;
 
             if (char != "") {
-              if (char == currentWord.split("")[0]) {
+              if (char == currentWord.split("")[index]) {
                 cellStyle = isCorrectStyle;
               } else {
                 cellStyle = activeStyle;
