@@ -31,18 +31,41 @@ export default function WordsGrid({
     setGuessRecord([]);
   }, [currentWord]);
 
+  console.log(currentWord);
+
   return (
     <div className="mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
       {Array.from({ length: MAX_ROWS }, (_, rowIndex) => {
         const guessedWord = guessRecord[rowIndex] ?? "";
+        // const charReference = {}
+
+        // if (guessedWord) {
+        //   for (let i = 0; i< currentWord.length; i++) {
+        //     if (currentWord.split('')[i] == guessedWord.split('')[i]){
+
+        //     }
+        //   }
+        // }
 
         {
           return Array.from({ length: WORD_LENGTH }, (_, index) => {
             const char = guessedWord[index] ?? "";
 
+            let cellStyle: string;
+
+            if (char != "") {
+              if (char == currentWord.split("")[0]) {
+                cellStyle = isCorrectStyle;
+              } else {
+                cellStyle = activeStyle;
+              }
+            } else {
+              cellStyle = defaultStyle;
+            }
+
             return (
               <div
-                className={`${char != "" ? activeStyle : defaultStyle} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
+                className={`${cellStyle} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
                 key={`${rowIndex}-${index}`}
               >
                 <p className="text-base md:text-2xl min-h-10 text-white text-extrabold">
