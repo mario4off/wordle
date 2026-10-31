@@ -38,9 +38,14 @@ export default function GuessForm({
           autoCorrect="off"
           spellCheck={false}
           aria-label="Escribe una palabra de cinco letras"
+          onPointerDown={(event) => {
+            if (document.activeElement !== event.currentTarget) {
+              event.currentTarget.focus({ preventScroll: true });
+            }
+          }}
           onChange={(e) => setValue(normalizeString(e.target.value))}
           value={value}
-          className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-10 md:min-h-12 rounded-md touch-manipulation"
+          className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-11 md:min-h-12 rounded-md touch-manipulation"
         />
 
         <div className="absolute left-full ms-[20px] md:ms-[30px] top-1/2 -translate-y-1/2">
