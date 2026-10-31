@@ -15,4 +15,8 @@
     @apply text-slate-400;
     font-family: "Montserrat", sans-serif;
   }
+
+  body {
+    @apply bg-black;
+  }
 }
