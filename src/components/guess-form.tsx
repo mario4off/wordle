@@ -24,7 +24,7 @@ export default function GuessForm({
         maxLength={5}
         onChange={(e) => setValue(normalizeString(e.target.value))}
         value={value}
-        className="border border-amber-300 text-amber-300 text-center text-xl tracking-widest min-h-12 rounded-md w-52"
+        className="border border-amber-300 text-amber-300 text-center text-xl tracking-widest md:min-h-12 rounded-md w-52"
       />
       <button
         type="submit"
