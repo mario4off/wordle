@@ -90,7 +90,7 @@ export default function WordsGrid({
 
             return (
               <div
-                className={`${defineCellStyle(char, currentWord.split("")[index], letters)} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
+                className={`${defineCellStyle(char, currentWord.split("")[index], letters)} bg-black text-center border rounded-3xl  p-1 md:p-3 px-4 md:px-16  w-auto md:min-w-38`}
                 key={`${rowIndex}-${index}`}
               >
                 <p className="text-base md:text-2xl min-h-10 text-white text-extrabold">
