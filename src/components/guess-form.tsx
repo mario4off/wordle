@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { normalizeString } from "../utils";
 import RestartGameButton from "./restart-game-button";
 
@@ -9,12 +9,14 @@ export default function GuessForm({
   setGuess: (e: string) => void;
   restart: () => void;
 }) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleSubmit = (formData: FormData) => {
     const guess = formData.get("guess") as string;
 
     if (guess.length == 5) {
-      setGuess(formData.get("guess") as string);
+      setGuess(guess);
       setValue("");
+      inputRef.current?.focus();
     }
   };
 
@@ -26,12 +28,19 @@ export default function GuessForm({
     >
       <div className="relative flex justify-center w-full">
         <input
+          ref={inputRef}
           type="text"
           name="guess"
           maxLength={5}
+          inputMode="text"
+          autoCapitalize="characters"
+          autoComplete="off"
+          autoCorrect="off"
+          spellCheck={false}
+          aria-label="Escribe una palabra de cinco letras"
           onChange={(e) => setValue(normalizeString(e.target.value))}
           value={value}
-          className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-10 md:min-h-12 rounded-md"
+          className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-10 md:min-h-12 rounded-md touch-manipulation"
         />
 
         <div className="absolute left-full ms-[20px] md:ms-[30px] top-1/2 -translate-y-1/2">
