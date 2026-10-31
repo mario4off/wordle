@@ -18,7 +18,7 @@ export default function GuessForm({
   const [value, setValue] = useState("");
   return (
     <form
-      className="flex items-center mb-6 gap-2 flex-col md:gap-10 mt-8"
+      className="flex items-center mb-4 gap-2 flex-col md:gap-10 mt-8"
       action={handleSubmit}
     >
       <input

@@ -6,7 +6,7 @@ export default function RestartGameButton({
   return (
     <button
       onClick={() => restart()}
-      className="text-amber-300 cursor-pointer text-md md:text-xl border border-amber-400 px-3 p-2 rounded-md hover:bg-amber-900"
+      className="text-amber-300 cursor-pointer text-md my-1 md:text-xl border border-amber-400 px-3 p-2 rounded-md hover:bg-amber-900"
     >
       Reiniciar partida
     </button>
