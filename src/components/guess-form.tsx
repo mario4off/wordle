@@ -33,16 +33,6 @@ export default function GuessForm({
           name="guess"
           maxLength={5}
           inputMode="text"
-          autoCapitalize="characters"
-          autoComplete="off"
-          autoCorrect="off"
-          spellCheck={false}
-          aria-label="Escribe una palabra de cinco letras"
-          onPointerDown={(event) => {
-            if (document.activeElement !== event.currentTarget) {
-              event.currentTarget.focus({ preventScroll: true });
-            }
-          }}
           onChange={(e) => setValue(normalizeString(e.target.value))}
           value={value}
           className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-11 md:min-h-12 rounded-md touch-manipulation"
