@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import words from "../config/words-list.json";
-import RestartGameButton from "./restart-game-button";
 import { getRandomWord } from "../services/wordsService";
 import WordsGrid from "./words-grid";
 import GuessForm from "./guess-form";
