@@ -33,10 +33,17 @@ export default function WordsGrid({
 
   console.log(currentWord);
 
-  function breakdownCurrentWord(word: string) {
+  function breakdownCurrentWord(currentWord: string, guess: string) {
     const letters: Record<string, number> = {};
+    const tempLetters: string[] = [];
 
-    for (const char of word) {
+    for (let index = 0; index < WORD_LENGTH; index++) {
+      if (currentWord.split("")[index] != guess.split("")[index]) {
+        tempLetters.push(currentWord.split("")[index]);
+      }
+    }
+
+    for (const char of tempLetters) {
       if (letters[char]) {
         letters[char]++;
       } else {
@@ -73,7 +80,7 @@ export default function WordsGrid({
       {Array.from({ length: MAX_ROWS }, (_, rowIndex) => {
         const guessedWord = guessRecord[rowIndex] ?? "";
 
-        const letters = breakdownCurrentWord(currentWord);
+        const letters = breakdownCurrentWord(currentWord, guess);
 
         {
           return Array.from({ length: WORD_LENGTH }, (_, index) => {
