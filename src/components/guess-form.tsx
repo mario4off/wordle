@@ -36,7 +36,7 @@ export default function GuessForm({
       >
         <span className="hidden md:block">Enviar palabra</span>
         <img
-          src="/public/arrow-up.webp"
+          src="/arrow-up.webp"
           alt="arrow up"
           className="block md:hidden w-8 h-8 object-contain"
         />
