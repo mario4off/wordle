@@ -2,7 +2,7 @@
 
 @layer base {
   h1 {
-    @apply text-white text-7xl font-medium;
+    @apply text-white text-3xl md:text-7xl font-medium;
     font-family: "Montserrat", sans-serif;
   }
 

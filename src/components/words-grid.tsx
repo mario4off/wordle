@@ -69,7 +69,7 @@ export default function WordsGrid({
   };
 
   return (
-    <div className="mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
+    <div className="mt-1 md:mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
       {Array.from({ length: MAX_ROWS }, (_, rowIndex) => {
         const guessedWord = guessRecord[rowIndex] ?? "";
         // const charReference = {}
