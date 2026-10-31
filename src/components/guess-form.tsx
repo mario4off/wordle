@@ -18,7 +18,7 @@ export default function GuessForm({
   const [value, setValue] = useState("");
   return (
     <form
-      className="flex items-center gap-2 flex-col md:gap-10 mt-4"
+      className="flex items-center mb-6 gap-2 flex-col md:gap-10 mt-8"
       action={handleSubmit}
     >
       <input
@@ -27,7 +27,7 @@ export default function GuessForm({
         maxLength={5}
         onChange={(e) => setValue(normalizeString(e.target.value))}
         value={value}
-        className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-xl tracking-widest md:min-h-12 rounded-md"
+        className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-10 md:min-h-12 rounded-md"
       />
 
       <button

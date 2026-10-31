@@ -69,7 +69,7 @@ export default function WordsGrid({
   };
 
   return (
-    <div className="mt-1 md:mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
+    <div className="mt-3 md:mt-5 grid grid-cols-5 gap-x-2 md:gap-x-8 gap-y-6 md:gap-y-10">
       {Array.from({ length: MAX_ROWS }, (_, rowIndex) => {
         const guessedWord = guessRecord[rowIndex] ?? "";
 
@@ -81,7 +81,7 @@ export default function WordsGrid({
 
             return (
               <div
-                className={`${defineCellStyle(char, currentWord.split("")[index], letters)} bg-black flex justify-center items-center border rounded-3xl  p-1 md:p-3 px-4 md:px-16  w-auto md:min-w-38`}
+                className={`${defineCellStyle(char, currentWord.split("")[index], letters)} bg-black flex justify-center items-center border rounded-3xl  p-2 md:p-3 px-6 md:px-16  w-auto md:min-w-38`}
                 key={`${rowIndex}-${index}`}
               >
                 <p className="text-base md:text-2xl min-h-4 md:min-h-10 text-white text-center text-extrabold">
