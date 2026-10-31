@@ -63,12 +63,12 @@ export default function Board() {
   };
 
   return (
-    <section className="px-4 md:px-12 flex flex-col items-center gap:4 md:gap-8 ">
+    <section className="px-4 md:px-12 flex flex-col justify-center items-center gap:4 md:gap-8 ">
       <WordsGrid currentWord={currentWord} guess={guess} tries={tries} />
 
       <div className="min-h-34 flex items-center">
         {gameStatus == "playing" ? (
-          <GuessForm setGuess={handleGuess} />
+          <GuessForm setGuess={handleGuess} restart={handleRestart} />
         ) : (
           <div
             className={`border px-3 p-2 rounded-md ${gameResult.style.container}`}
@@ -77,8 +77,6 @@ export default function Board() {
           </div>
         )}
       </div>
-
-      <RestartGameButton restart={handleRestart} />
     </section>
   );
 }

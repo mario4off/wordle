@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { normalizeString } from "../utils";
+import RestartGameButton from "./restart-game-button";
 
 export default function GuessForm({
   setGuess,
+  restart,
 }: {
   setGuess: (e: string) => void;
+  restart: () => void;
 }) {
   const handleSubmit = (formData: FormData) => {
     const guess = formData.get("guess") as string;
@@ -18,17 +21,23 @@ export default function GuessForm({
   const [value, setValue] = useState("");
   return (
     <form
-      className="flex items-center mb-4 gap-2 flex-col md:gap-10 mt-8"
+      className="flex items-center justify-center gap-2 flex-col md:gap-10 mt-8"
       action={handleSubmit}
     >
-      <input
-        type="text"
-        name="guess"
-        maxLength={5}
-        onChange={(e) => setValue(normalizeString(e.target.value))}
-        value={value}
-        className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-10 md:min-h-12 rounded-md"
-      />
+      <div className="relative flex justify-center w-full">
+        <input
+          type="text"
+          name="guess"
+          maxLength={5}
+          onChange={(e) => setValue(normalizeString(e.target.value))}
+          value={value}
+          className="w-30 md:w-52 border border-amber-300 text-amber-300 text-center text-base tracking-widest min-h-10 md:min-h-12 rounded-md"
+        />
+
+        <div className="absolute left-full ms-[20px] md:ms-[30px] top-1/2 -translate-y-1/2">
+          <RestartGameButton restart={restart} />
+        </div>
+      </div>
 
       <button
         type="submit"
