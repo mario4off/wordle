@@ -17,7 +17,7 @@ export default function GuessForm({
 
   const [value, setValue] = useState("");
   return (
-    <form className="flex flex-col gap-10" action={handleSubmit}>
+    <form className="flex md:flex-col gap-10" action={handleSubmit}>
       <input
         type="text"
         name="guess"
@@ -30,7 +30,12 @@ export default function GuessForm({
         type="submit"
         className="text-amber-300 cursor-pointer text-xl border border-amber-300 px-3 p-2 rounded-md hover:bg-amber-900"
       >
-        Enviar palabra
+        <span className="hidden md:block">Enviar palabra</span>
+        <img
+          src="/public/arrow-up.webp"
+          alt="arrow up"
+          className="block md:hidden min-h-8 min-w-8"
+        />
       </button>
     </form>
   );
