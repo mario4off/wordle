@@ -5,7 +5,7 @@ import Header from "./components/header";
 function App() {
   return (
     <>
-      <main className="min-h-dvh w-full grid grid-rows-[auto-1fr-auto]">
+      <main className="fixed inset-0 overflow-y-auto min-h-dvh w-full grid grid-rows-[auto-1fr-auto]">
         <Header />
         <Board />
         <Footer />
