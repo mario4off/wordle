@@ -10,7 +10,7 @@ export default function WordsGrid({
   tries: number;
 }) {
   const isCorrectStyle = "border-green-400";
-  const isIncorrectStyle = "border-red-300";
+  const hintStyle = "border-yellow-300";
   const defaultStyle = "border-slate-700";
   const activeStyle = "border-slate-300";
 
@@ -33,13 +33,37 @@ export default function WordsGrid({
 
   console.log(currentWord);
 
-  const defineCellStyle = (guessChar: string, referenceChar: string) => {
+  function breakdownCurrentWord(word: string) {
+    const letters: Record<string, number> = {};
+
+    for (const char of word) {
+      if (letters[char]) {
+        letters[char]++;
+      } else {
+        letters[char] = 1;
+      }
+    }
+
+    return letters;
+  }
+
+  const defineCellStyle = (
+    guessChar: string,
+    referenceChar: string,
+    letters: Record<string, number>,
+  ) => {
     if (guessChar != "") {
       if (guessChar == referenceChar) {
         return isCorrectStyle;
-      } else {
-        return activeStyle;
       }
+
+      if (letters[guessChar] > 0) {
+        console.log("pista", guessChar);
+        letters[guessChar]--;
+        return hintStyle;
+      }
+
+      return activeStyle;
     }
     return defaultStyle;
   };
@@ -58,13 +82,15 @@ export default function WordsGrid({
         //   }
         // }
 
+        const letters = breakdownCurrentWord(currentWord);
+
         {
           return Array.from({ length: WORD_LENGTH }, (_, index) => {
             const char = guessedWord[index] ?? "";
 
             return (
               <div
-                className={`${defineCellStyle(char, currentWord.split("")[index])} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
+                className={`${defineCellStyle(char, currentWord.split("")[index], letters)} bg-black text-center border rounded-3xl  p-3 px-16 min-w-38`}
                 key={`${rowIndex}-${index}`}
               >
                 <p className="text-base md:text-2xl min-h-10 text-white text-extrabold">
